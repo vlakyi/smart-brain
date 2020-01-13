@@ -1,1 +1,1 @@
-# smart-brain
+# smartbrain
