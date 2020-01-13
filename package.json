@@ -2,7 +2,7 @@
   "name": "facerecognationbrain",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vlakyi.github.com.io/smartbrain/",
+  "homepage": "https://vlakyi.github.io/smartbrain/",
   "dependencies": {
     "clarifai": "^2.9.1",
     "react": "^16.11.0",
