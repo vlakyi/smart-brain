@@ -11,3 +11,7 @@
     justify-content: center;
     cursor: pointer;
 }
+
+.center img {
+    max-width: 90%;
+}

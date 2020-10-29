@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 15px;
 }
 
 .center {
@@ -13,4 +14,11 @@
   bottom: 0;
   z-index: -1;
   width: 100%;
+}
+
+@media screen and (max-width: 600px){
+  article {
+    width: 80vw !important;
+    padding: 1rem;
+  }
 }

@@ -1,3 +1,9 @@
 .Tilt {
     background: linear-gradient(to right, rgb(133, 144, 239), 45%,  rgb(247, 137, 2));
 }
+
+@media screen and (max-width: 600px) {
+    .Tilt {
+        display: none;
+    }
+}

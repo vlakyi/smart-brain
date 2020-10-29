@@ -8,6 +8,7 @@ import Particles from 'react-particles-js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
+import Modal from './components/Modal/Modal';
 
 const particlesOptions = {
   particles: {
@@ -32,7 +33,8 @@ const initialState = {
       email: '',
       entries: 0,
       joined: ''
-    }
+    },
+    isModalOpen: false
 }
 class App extends React.Component {
   constructor() {
@@ -96,13 +98,20 @@ class App extends React.Component {
             .then(count => {
               this.setState(Object.assign(user, {entries: count}))     // to not change user object, but just paramert we use this Object.assign(object, {property: value})
             })
-            .catch(console.log)
+            .catch(err => {
+              this.setState({isModalOpen: true})
+              console.log(err)
+            })
           }
               this.displayFaceBox(this.calculateFaceLocation(response))
             })
-          .catch(err => console.log(err))
+          .catch(err => {
+            this.setState({isModalOpen: true})
+            console.log(err)
+          })
     }
     else {
+      this.setState({isModalOpen: true})
       console.log('empty url');
     }
   }
@@ -116,6 +125,10 @@ class App extends React.Component {
     this.setState({route: route});
   }
 
+  closeModal = () => {
+    this.setState({isModalOpen: false});
+}
+
   render() {
    const {isSignedIn, imageUrl, route, box} = this.state;
     return (                        // not best way, but it's more for test
@@ -126,6 +139,7 @@ class App extends React.Component {
           <Navigation isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
           {route === 'home'
           ? <div> 
+                <Modal headerText='Wrong Image Url' mainText="Please, use correct image url and try again" buttonText="Try Again" isModalOpen={this.state.isModalOpen} closeModal={this.closeModal}/>
                 <Logo/>
                 <Rank name={this.state.user.name} entries={this.state.user.entries}/>
                 <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit = {this.onButtonSubmit}/>

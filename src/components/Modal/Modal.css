@@ -1,0 +1,30 @@
+.modal_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_container {
+    background: white;
+    width: 50%;
+    max-width: 32rem;
+    padding: 1rem;
+}
+
+.modal_container button {
+    background: transparent;
+    padding: 0.5rem;
+}
+
+@media screen and (max-width: 600px){
+    .modal_container {
+        width: 80%;
+    }
+}
