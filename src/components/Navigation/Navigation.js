@@ -3,7 +3,6 @@ import { Link, useLocation} from 'react-router-dom';
 
 const Navigation = ({signOut}) => {
     const location = useLocation();
-    console.log('From header', location);
     if (location.pathname === '/smartbrain/home') {
         return (
             <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>

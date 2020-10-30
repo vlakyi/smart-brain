@@ -125,7 +125,6 @@ class App extends React.Component {
     }
     else {
       this.setState({ isModalOpen: true })
-      console.log('empty url');
     }
   }
 
@@ -134,17 +133,14 @@ class App extends React.Component {
   }
 
   signOut = () => {
-    console.log(this.signOut);
     if (this.props.location.pathname === '/smartbrain/home') {
       this.setState(initialState)
     }
   }
 
   render() {
-    console.log(this.state);
     const { imageUrl, box, user: { id, name, entries }, isModalOpen } = this.state;
     // const homepageProps = [name, entries, imageUrl, box];
-    console.log(this.props);
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
