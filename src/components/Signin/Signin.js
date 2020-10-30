@@ -41,7 +41,7 @@ class Signin extends React.Component {
             const user = await response.json();
             if(user.id) {
                 loadUser(user);
-                history.push('/home');
+                history.push('/smartbrain/home');
             }
             else {
                 this.setState({isModalOpen: true});
@@ -95,7 +95,7 @@ class Signin extends React.Component {
                                 />
                             </div>
                             <div className="lh-copy mt3">
-                                <Link to='/register' className="f6 link dim black db pointer">Register</Link>
+                                <Link to='/smartbrain/register' className="f6 link dim black db pointer">Register</Link>
                             </div>
                         </div>
                     </main>

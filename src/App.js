@@ -135,7 +135,7 @@ class App extends React.Component {
 
   signOut = () => {
     console.log(this.signOut);
-    if (this.props.location.pathname === '/home') {
+    if (this.props.location.pathname === '/smartbrain/home') {
       this.setState(initialState)
     }
   }
@@ -150,29 +150,29 @@ class App extends React.Component {
         <Particles className="particles" params={particlesOptions} />
         <Navigation signOut={this.signOut} />
         <Switch>
-          <Route path='/home' render={() => {
+          <Route path='/smartbrain/home' render={() => {
             if (id !== '') {
               return <Homepage name={name} entries={entries} imageUrl={imageUrl} box={box} isModalOpen={isModalOpen} closeModal={this.closeModal} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
             }
             else {
-              return <Redirect to='/signin' />
+              return <Redirect to='/smartbrain/signin' />
             }
           }}>
           </Route>
 
-          <Route path='/signin' render={({ history }) => (
+          <Route path='/smartbrain/signin' render={({ history }) => (
             <Signin loadUser={this.loadUser} history={history} />
           )}>
           </Route>
 
-          <Route exact path={`/`}>
-            <Redirect to={`/signin`} />
+          <Route exact path='/smartbrain/'>
+            <Redirect to='/smartbrain/signin' />
           </Route>
 
-          <Route path='/register'>
+          <Route path='/smartbrain/register'>
             <Register loadUser={this.loadUser} />
           </Route>
-          <Route render={() => <Redirect to={{ pathname: "/signin" }} />} />
+          <Route render={() => <Redirect to={{ pathname: "/smartbrain/signin" }} />} />
         </Switch>
       </div>
     );
