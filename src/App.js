@@ -83,7 +83,7 @@ class App extends React.Component {
 
     if (input) {
 
-      let imageUrlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+      let imageUrlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
       if (!imageUrlRegex.test(input)) {
         this.setState({ isModalOpen: true });
         return;
