@@ -140,7 +140,6 @@ class App extends React.Component {
 
   render() {
     const { imageUrl, box, user: { id, name, entries }, isModalOpen } = this.state;
-    // const homepageProps = [name, entries, imageUrl, box];
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
@@ -166,7 +165,7 @@ class App extends React.Component {
           </Route>
 
           <Route path='/smartbrain/register'>
-            <Register loadUser={this.loadUser} />
+            <Register loadUser={this.loadUser} history={this.props.history}/>
           </Route>
           <Route render={() => <Redirect to={{ pathname: "/smartbrain/signin" }} />} />
         </Switch>

@@ -43,13 +43,14 @@ class Register extends React.Component {
             .then(user => {
                 if (user.id) {
                     this.props.loadUser(user);
-                    this.props.onRouteChange('home');
+                    this.props.history.push('/smartbrain/home');
                 }
                 else {
                     this.setState({isModalOpen: true});
                 }
             })
             .catch((err) => {
+                console.log(err);
                 this.setState({isModalOpen: true});
             })
     }
