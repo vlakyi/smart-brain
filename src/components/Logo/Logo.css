@@ -1,5 +1,15 @@
 .Tilt {
-    background: linear-gradient(to right, rgb(133, 144, 239), 45%,  rgb(247, 137, 2));
+    background: linear-gradient(45deg, #BE93C5, #7BC6CC);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 5rem;
 }
 
 @media screen and (max-width: 600px) {

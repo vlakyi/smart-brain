@@ -12,10 +12,15 @@
 }
 
 .modal_container {
-    background: white;
+    background: rgb(255, 255, 255);
     width: 50%;
     max-width: 32rem;
-    padding: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.modal_container h1 {
+    margin-top: 0;
 }
 
 .modal_container button {

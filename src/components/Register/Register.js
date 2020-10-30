@@ -25,7 +25,7 @@ class Register extends React.Component {
 
     onSubmitSignIn = () => {
         const {email, password, name} = this.state;
-        if(email === '' || password === '' || name === '' || !email.includes('@')) {
+        if(email === '' || password === '' || name === '' || !email.includes('@') || !email.includes('.')) {
             this.setState({ isModalOpen: true});
             return;
         }
@@ -42,7 +42,7 @@ class Register extends React.Component {
             .then(response => response.json())
             .then(user => {
                 console.log(user);
-                if (user.id) {                                     // if user has id
+                if (user.id) {
                     this.props.loadUser(user);
                     this.props.onRouteChange('home');
                 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../Modal/Modal';
+import {Link} from 'react-router-dom';
 
 class Signin extends React.Component {
     constructor(props) {
@@ -21,23 +22,26 @@ class Signin extends React.Component {
 
     onSubmitSignIn = async () => {
         const { signInEmail, signInPassword } = this.state;
-        if (signInEmail === '' && signInPassword === '') {
+        const {loadUser, history} = this.props;
+
+        if ((signInEmail === '' && signInPassword === '') || !signInEmail.includes('@') || !signInEmail.includes('.')) {
             this.setState({ isModalOpen: true });
         }
+
         try {
             const response = await fetch('https://secure-bastion-14247.herokuapp.com/signin', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    email: this.state.signInEmail,
-                    password: this.state.signInPassword
+                    email: signInEmail,
+                    password: signInPassword
                 })
             })
 
             const user = await response.json();
             if(user.id) {
-                this.props.loadUser(user);
-                this.props.onRouteChange('home');
+                loadUser(user);
+                history.push('/home');
             }
             else {
                 this.setState({isModalOpen: true});
@@ -53,7 +57,6 @@ class Signin extends React.Component {
     }
 
     render() {
-        const { onRouteChange } = this.props;
         return (
             <div>
                 <Modal headerText='Wrong Credentials' mainText="Please, check your credentials and try again!" buttonText="Try Again" isModalOpen={this.state.isModalOpen} closeModal={this.closeModal}/>
@@ -92,7 +95,7 @@ class Signin extends React.Component {
                                 />
                             </div>
                             <div className="lh-copy mt3">
-                                <p onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
+                                <Link to='/register' className="f6 link dim black db pointer">Register</Link>
                             </div>
                         </div>
                     </main>

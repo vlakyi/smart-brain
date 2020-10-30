@@ -1,23 +1,23 @@
 import React from 'react';
+import { Link, useLocation} from 'react-router-dom';
 
-const Navigation = ({isSignedIn, onRouteChange}) => {
-        if(isSignedIn){
-            return(
-                <nav style= {{display: 'flex', justifyContent: 'flex-end'}}>
-                    <p onClick = {() => onRouteChange('signout')}                           // adding arrow function to run this function only on click
-                    className= 'f3 link dim black underline pa3 pointer'> Sign Out</p>
-                 </nav>
-            );
-        } else {
-            return(
-        <nav style= {{display: 'flex', justifyContent: 'flex-end'}}>
-            <p onClick = {() => onRouteChange('signin')}                           // adding arrow function to run this function only on click
-             className= 'f3 link dim black underline pa3 pointer'> Sign In</p>
-            <p onClick = {() => onRouteChange('register')}                           // adding arrow function to run this function only on click
-             className= 'f3 link dim black underline pa3 pointer'> Register</p>
-        </nav>
-            );
-        }
+const Navigation = ({signOut}) => {
+    const location = useLocation();
+    console.log('From header', location);
+    if (location.pathname === '/home') {
+        return (
+            <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Link to={() => {'/signin'}} onClick={signOut} className='f3 link dim black pa3 pointer'> Sign Out</Link>
+            </nav>
+        );
+    } else {
+        return (
+            <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Link to='/signin' className='f3 link dim black pa3 pointer'> Sign In</Link>
+                <Link to='/register' className='f3 link dim black pa3 pointer'> Register</Link>
+            </nav>
+        );
+    }
 }
 
-export default Navigation;
+export default React.memo(Navigation);
