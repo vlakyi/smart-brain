@@ -145,7 +145,7 @@ class App extends React.Component {
         <Particles className="particles" params={particlesOptions} />
         <Navigation signOut={this.signOut} />
         <Switch>
-          <Route path='/smartbrain/home' render={() => {
+          <Route exact path='/smartbrain/home' render={() => {
             if (id !== '') {
               return <Homepage name={name} entries={entries} imageUrl={imageUrl} box={box} isModalOpen={isModalOpen} closeModal={this.closeModal} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
             }
@@ -155,7 +155,7 @@ class App extends React.Component {
           }}>
           </Route>
 
-          <Route path='/smartbrain/signin' render={({ history }) => (
+          <Route exact path='/smartbrain/signin' render={({ history }) => (
             <Signin loadUser={this.loadUser} history={history} />
           )}>
           </Route>
@@ -164,9 +164,10 @@ class App extends React.Component {
             <Redirect to='/smartbrain/signin' />
           </Route>
 
-          <Route path='/smartbrain/register'>
+          <Route exact path='/smartbrain/register'>
             <Register loadUser={this.loadUser} history={this.props.history}/>
           </Route>
+
           <Route render={() => <Redirect to={{ pathname: "/smartbrain/signin" }} />} />
         </Switch>
       </div>
