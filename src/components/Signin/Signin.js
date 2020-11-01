@@ -41,6 +41,8 @@ class Signin extends React.Component {
             const user = await response.json();
             if (user.id) {
                 loadUser(user);
+                console.log(user);
+                localStorage.setItem('smartbrain_user', JSON.stringify(user));
                 history.push('/smartbrain/home');
             }
             else {

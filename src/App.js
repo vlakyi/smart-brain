@@ -30,7 +30,7 @@ const initialState = {
   imageUrl: '',
   box: {},
   isSignedIn: false,
-  user: {
+  user: localStorage.getItem('smartbrain_user') ? JSON.parse(localStorage.getItem('smartbrain_user')) : {
     id: '',
     name: '',
     email: '',
@@ -134,39 +134,38 @@ class App extends React.Component {
 
   signOut = () => {
     if (this.props.location.pathname === '/smartbrain/home') {
-      this.setState(initialState)
+      localStorage.removeItem('smartbrain_user');
+      this.setState(initialState);
     }
   }
 
-  render() {
+  passSignInUser = () => {
     const { imageUrl, box, user: { id, name, entries }, isModalOpen } = this.state;
+    return (id !== '') ? <Homepage name={name} entries={entries} imageUrl={imageUrl} box={box} isModalOpen={isModalOpen} closeModal={this.closeModal} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} /> :
+      <Redirect to='/smartbrain/signin' />
+  }
+
+
+  render() {
+    const { user: { id } } = this.state;
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
         <Navigation signOut={this.signOut} />
         <Switch>
-          <Route exact path='/smartbrain/home' render={() => {
-            if (id !== '') {
-              return <Homepage name={name} entries={entries} imageUrl={imageUrl} box={box} isModalOpen={isModalOpen} closeModal={this.closeModal} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-            }
-            else {
-              return <Redirect to='/smartbrain/signin' />
-            }
-          }}>
-          </Route>
+          <Route exact path='/smartbrain/home' render={this.passSignInUser} />
 
-          <Route exact path='/smartbrain/signin' render={({ history }) => (
-            <Signin loadUser={this.loadUser} history={history} />
-          )}>
-          </Route>
+          <Route exact path='/smartbrain/' render={() => {
+            return (id !== '') ? <Redirect to='/smartbrain/home' /> : <Redirect to='/smartbrain/signin' />
+          }} />
 
-          <Route exact path='/smartbrain/'>
-            <Redirect to='/smartbrain/signin' />
-          </Route>
+          <Route exact path='/smartbrain/signin' render={({ history }) => {
+            return (id !== '') ? <Redirect to='/smartbrain/home' /> : <Signin loadUser={this.loadUser} history={history} />
+          }} />
 
-          <Route exact path='/smartbrain/register'>
-            <Register loadUser={this.loadUser} history={this.props.history}/>
-          </Route>
+          <Route exact path='/smartbrain/register' render={({ history }) => {
+            return (id !== '') ? <Redirect to='/smartbrain/home' /> : <Register loadUser={this.loadUser} history={history} />
+          }} />
 
           <Route render={() => <Redirect to={{ pathname: "/smartbrain/signin" }} />} />
         </Switch>
