@@ -2,7 +2,7 @@ import React from 'react';
 import './ImageLinkForm.css';
 const ImageLinkForm = ({onInputChange, onButtonSubmit}) => {
     return (
-        <div>
+        <React.Fragment>
             <p className ="f3">
                 {'This Magic Brain will detect faces in your pictures. Give it a try.'}
             </p>
@@ -13,7 +13,7 @@ const ImageLinkForm = ({onInputChange, onButtonSubmit}) => {
                 onClick={onButtonSubmit}>Detect</button>
             </div>
         </div>
-    </div>
+    </React.Fragment>
     );
 }
 

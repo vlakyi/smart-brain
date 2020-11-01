@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../Modal/Modal';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Signin extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class Signin extends React.Component {
 
     onSubmitSignIn = async () => {
         const { signInEmail, signInPassword } = this.state;
-        const {loadUser, history} = this.props;
+        const { loadUser, history } = this.props;
 
         if ((signInEmail === '' && signInPassword === '') || !signInEmail.includes('@') || !signInEmail.includes('.')) {
             this.setState({ isModalOpen: true });
@@ -39,34 +39,34 @@ class Signin extends React.Component {
             })
 
             const user = await response.json();
-            if(user.id) {
+            if (user.id) {
                 loadUser(user);
                 history.push('/smartbrain/home');
             }
             else {
-                this.setState({isModalOpen: true});
+                this.setState({ isModalOpen: true });
             }
         } catch (error) {
             console.log(error);
-            this.setState({isModalOpen: true});
+            this.setState({ isModalOpen: true });
         }
     }
 
     closeModal = () => {
-        this.setState({ isModalOpen: false});
+        this.setState({ isModalOpen: false });
     }
 
     render() {
         return (
-            <div>
-                <Modal headerText='Wrong Credentials' mainText="Please, check your credentials and try again!" buttonText="Try Again" isModalOpen={this.state.isModalOpen} closeModal={this.closeModal}/>
+            <React.Fragment>
+                <Modal headerText='Wrong Credentials' mainText="Please, check your credentials and try again!" buttonText="Try Again" isModalOpen={this.state.isModalOpen} closeModal={this.closeModal} />
                 <article className="br3 ba b--blalck-10 mv4 w-100 w-50-m w-25-1 mw6 shadow-5 center">
                     <main className="pa4 black-80">
                         <div className="measure">
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                                 <legend className="f2 fw6 ph0 mh0">Sign In</legend>
                                 <div className="mt3">
-                                    <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                                    <label className="db fw6 lh-copy f6 tl" htmlFor="email-address">Email</label>
                                     <input
                                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                                         type="email"
@@ -76,7 +76,7 @@ class Signin extends React.Component {
                                         } />
                                 </div>
                                 <div className="mv3">
-                                    <label className="db fw6 lh-copy f6" htmlFor="password" >Password</label>
+                                    <label className="db fw6 lh-copy f6 tl" htmlFor="password" >Password</label>
                                     <input
                                         className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                                         type="password"
@@ -86,21 +86,19 @@ class Signin extends React.Component {
                                     />
                                 </div>
                             </fieldset>
-                            <div className="">
+                            <div className='flex items-center justify-between'>
                                 <input
                                     onClick={this.onSubmitSignIn}
                                     className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                     type="submit"
                                     value="Sign in"
                                 />
-                            </div>
-                            <div className="lh-copy mt3">
                                 <Link to='/smartbrain/register' className="f6 link dim black db pointer">Register</Link>
                             </div>
                         </div>
                     </main>
                 </article>
-            </div>
+            </React.Fragment>
         );
     }
 }
