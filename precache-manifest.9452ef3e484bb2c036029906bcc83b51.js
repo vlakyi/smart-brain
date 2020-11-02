@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6fd11d2760a55391b6373a5e02b573e0",
+    "revision": "d7cb00ed7608ac7335211b6abb0a6166",
     "url": "/smartbrain/index.html"
   },
   {
-    "revision": "179f3b7e923e81cae9ca",
+    "revision": "8548d900efe47a7b3868",
     "url": "/smartbrain/static/css/2.038644eb.chunk.css"
   },
   {
-    "revision": "d3bd33a9c074d14702db",
-    "url": "/smartbrain/static/css/main.a6626741.chunk.css"
+    "revision": "d1a692f3cff1783d6622",
+    "url": "/smartbrain/static/css/main.5e221d89.chunk.css"
   },
   {
-    "revision": "179f3b7e923e81cae9ca",
-    "url": "/smartbrain/static/js/2.bfc826e3.chunk.js"
+    "revision": "8548d900efe47a7b3868",
+    "url": "/smartbrain/static/js/2.c6bcb476.chunk.js"
   },
   {
     "revision": "9b318b6fb13190fe82c0677e9264b3c7",
-    "url": "/smartbrain/static/js/2.bfc826e3.chunk.js.LICENSE.txt"
+    "url": "/smartbrain/static/js/2.c6bcb476.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d3bd33a9c074d14702db",
-    "url": "/smartbrain/static/js/main.4aad2a1d.chunk.js"
+    "revision": "d1a692f3cff1783d6622",
+    "url": "/smartbrain/static/js/main.8c8adb1f.chunk.js"
   },
   {
     "revision": "e2040a3561ff156743c8",
