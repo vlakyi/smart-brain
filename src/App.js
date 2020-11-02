@@ -5,7 +5,7 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Homepage from './components/HomePage/HomePage';
 
-import {fetchData} from './utils/app.utils';
+import { fetchData } from './utils/app.utils';
 
 import {
   Switch,
@@ -82,7 +82,7 @@ class App extends React.Component {
     this.setState({ input: event.target.value });
   }
 
-  onButtonSubmit = async() => {
+  onButtonSubmit = async () => {
     const { input, user } = this.state;
 
     if (input) {
@@ -95,10 +95,10 @@ class App extends React.Component {
 
       this.setState({ imageUrl: input });
 
-      fetchData('https://secure-bastion-14247.herokuapp.com/imageurl', {input}, 'post')
+      fetchData('https://secure-bastion-14247.herokuapp.com/imageurl', { input }, 'post')
         .then(response => {
           if (response) {
-            fetchData('https://secure-bastion-14247.herokuapp.com/image', {id: user.id}, 'put')
+            fetchData('https://secure-bastion-14247.herokuapp.com/image', { id: user.id }, 'put')
               .then(count => {
                 this.setState(Object.assign(user, { entries: count }))     // to not change user object, but just paramert we use this Object.assign(object, {property: value})
               })

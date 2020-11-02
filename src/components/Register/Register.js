@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 
-import {makePostUserRequest, onSuccess, onReject} from '../../utils/user.utils';
+import { makePostUserRequest, onSuccess, onReject } from '../../utils/user.utils';
 
 const Register = ({ loadUser }) => {
     const history = useHistory();
@@ -33,7 +33,7 @@ const Register = ({ loadUser }) => {
             return;
         }
 
-        const payload = {email, password, name};
+        const payload = { email, password, name };
         makePostUserRequest('https://secure-bastion-14247.herokuapp.com/register', payload, (user) => onSuccess(user, loadUser, history), (error) => onReject(error, registerState, setRegisterState));
     }
 

@@ -27,7 +27,7 @@ const Signin = ({ loadUser }) => {
             setSignInState({ ...signInState, isModalOpen: true });
         }
 
-        const payload = {email, password };
+        const payload = { email, password };
         makePostUserRequest('https://secure-bastion-14247.herokuapp.com/signin', payload, (user) => onSuccess(user, loadUser, history), (error) => onReject(error, signInState, setSignInState));
     }
 

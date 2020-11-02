@@ -1,8 +1,8 @@
 import React from 'react';
 import './Modal.css';
 
-const Modal = ({ headerText, mainText, buttonText, isModalOpen, closeModal}) => {
-    if(isModalOpen) {
+const Modal = ({ headerText, mainText, buttonText, isModalOpen, closeModal }) => {
+    if (isModalOpen) {
         return (
             <div className='modal_overlay'>
                 <div className='modal_container'>

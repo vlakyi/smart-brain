@@ -1,5 +1,5 @@
 import 'node-fetch';
-import {fetchData} from './app.utils';
+import { fetchData } from './app.utils';
 
 export const makePostUserRequest = async (url, payload, onSuccess, onReject) => {
     try {

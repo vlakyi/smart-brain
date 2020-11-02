@@ -6,8 +6,8 @@ export const fetchData = async (url, payload, method) => {
             ...payload
         })
     })
-    .then(response => {
-        return response.json();
-    })
-    .catch(error => console.log(error));
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => console.log(error));
 }
