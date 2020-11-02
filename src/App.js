@@ -3,8 +3,9 @@ import Navigation from './components/Navigation/Navigation';
 import Particles from 'react-particles-js';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
+import Homepage from './components/HomePage/HomePage';
 
-import './App.css';
+import {fetchData} from './utils/app.utils';
 
 import {
   Switch,
@@ -12,7 +13,8 @@ import {
   withRouter,
   Redirect
 } from "react-router-dom";
-import Homepage from './components/HomePage/HomePage';
+
+import './App.css';
 
 const particlesOptions = {
   particles: {
@@ -25,6 +27,7 @@ const particlesOptions = {
     }
   }
 }
+
 const initialState = {
   input: '',
   imageUrl: '',
@@ -39,6 +42,7 @@ const initialState = {
   },
   isModalOpen: false
 }
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +82,7 @@ class App extends React.Component {
     this.setState({ input: event.target.value });
   }
 
-  onButtonSubmit = () => {
+  onButtonSubmit = async() => {
     const { input, user } = this.state;
 
     if (input) {
@@ -90,24 +94,11 @@ class App extends React.Component {
       }
 
       this.setState({ imageUrl: input });
-      fetch('https://secure-bastion-14247.herokuapp.com/imageurl', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          input: input
-        })
-      })
-        .then(response => response.json())
+
+      fetchData('https://secure-bastion-14247.herokuapp.com/imageurl', {input}, 'post')
         .then(response => {
           if (response) {
-            fetch('https://secure-bastion-14247.herokuapp.com/image', {
-              method: 'put',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                id: user.id
-              })
-            })
-              .then(response => response.json())
+            fetchData('https://secure-bastion-14247.herokuapp.com/image', {id: user.id}, 'put')
               .then(count => {
                 this.setState(Object.assign(user, { entries: count }))     // to not change user object, but just paramert we use this Object.assign(object, {property: value})
               })
@@ -145,7 +136,6 @@ class App extends React.Component {
       <Redirect to='/smartbrain/signin' />
   }
 
-
   render() {
     const { user: { id } } = this.state;
     return (
@@ -159,8 +149,8 @@ class App extends React.Component {
             return (id !== '') ? <Redirect to='/smartbrain/home' /> : <Redirect to='/smartbrain/signin' />
           }} />
 
-          <Route exact path='/smartbrain/signin' render={({ history }) => {
-            return (id !== '') ? <Redirect to='/smartbrain/home' /> : <Signin loadUser={this.loadUser} history={history} />
+          <Route exact path='/smartbrain/signin' render={() => {
+            return (id !== '') ? <Redirect to='/smartbrain/home' /> : <Signin loadUser={this.loadUser} />
           }} />
 
           <Route exact path='/smartbrain/register' render={({ history }) => {
